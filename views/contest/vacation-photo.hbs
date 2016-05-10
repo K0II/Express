@@ -1,0 +1,31 @@
+<!-- 只显示文件名 -->
+
+<form  id="vacationForm" enctype="multipart/form-data" method="POST" action="/contest/vacation-photo/{year}/{month}">
+    <input type="text" name="name" value="" placeholder="Name">
+    <input type="email" name="email" value="" placeholder="Email">
+    <input type="file" id="fieldPhoto"required name="photo" data-url="/upload" accept="image/*" value="">
+    <div id="uploads">
+
+    </div>
+    <input type="submit" value="Register">
+</form>
+{{#section 'jquery'}}
+	<script src="/vendor/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+	<script src="/vendor/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+	<script src="/vendor/jquery-file-upload/js/jquery.fileupload.js"></script>
+	<script>
+        $(document).ready(function(){
+            $('#fieldPhoto').fileupload({
+				dataType: 'json',
+				done: function(e, data){
+					$.each(data.result.files, function(index, file){
+						$('#fileUploads').append($('<div class="upload">' +
+							'<span class="glyphicon glyphicon-ok"></span>&nbsp;' +
+							file.originalName + '</div>'));
+					});
+				}
+			});
+
+        });
+    </script>
+{{/section}}

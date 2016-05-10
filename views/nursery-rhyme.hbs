@@ -1,0 +1,57 @@
+{{#section 'head'}}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+
+    <!-- ========================== Handlebars 的客户端模版 ========================== -->
+    <!-- Handlebars 允许我们使用 JSON 数据接收 AJAX 调用结果，并将其格式化以适应我们的网站 -->
+    <!-- 在与第三方 API（返回 JSON 数据，而不是适应你网站的格式化 HTML 文本）通信时尤其有用 -->
+
+    <script id="nurseryRhymeTemplate" type="text/x-handlebars-template">
+        Marry had a little <b>\{{animal}}</b>, its <b>\{{bodyPart}}</b> was <b>\{{adjective}}</b> as <b>\{{noun}}</b>.
+    </script>
+    <!-- ========================== Handlebars 的客户端模版 ========================== -->
+{{/section}}
+
+<!-- {{{_sections.jquery}}}{{{_sections.jquery}}} 要放到 layouts/main.hbs 中 -->
+
+<div id="nurseryRhyme" style="border: 2px solid #000;">
+    Click a button ...
+</div>
+<hr>
+<!-- 通过JavaScript直接渲染 -->
+<button id="btnnurseryRhyme">Generate nursery rhyme</button>
+<!-- 通过AJAX调用来渲染 -->
+<button id="btnnurseryRhymeAjax">Generate nursery rhyme from Ajax</button>
+
+
+<!-- 使用模版前要编译它 -->
+{{#section 'jquery'}}
+        <script>
+            $(document).ready(function(){
+                var nurseryRhymeTemplate = Handlebars.compile( $('#nurseryRhymeTemplate').html() );
+                // Handlebars.compile 接收一个模版，返回一个方法
+                // 这个方法接受一个上下文对象，返回一个以渲染字符串
+                // 所以一旦编译了模版，就可以像调用方法函数一样重用模版渲染
+
+                var $nurseryRhyme = $('#nurseryRhyme');
+
+                $('#btnnurseryRhyme').on('click', function(evt){
+                    evt.preventDefault();    // 取消事件的默认动作  ,  ie下需要用 window.event.returnValue = false
+                    $nurseryRhyme.html(nurseryRhymeTemplate({
+                        animal: 'basilisk',
+                        bodyPart: 'tail',
+                        adjective: 'sharp',
+                        noun: 'a needle'
+                    }));
+                });
+
+                $('#btnnurseryRhymeAjax').on('click', function(evt){
+                    evt.preventDefault();
+                    $.ajax('/data/nursery-rhyme', {     //  请求/data/nursery-rhyme的数据
+                        success: function(data){
+                            $nurseryRhyme.html( nurseryRhymeTemplate(data) );
+                        }
+                    });
+                });
+            });
+        </script>
+{{/section}}
