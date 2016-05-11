@@ -1,9 +1,9 @@
-var main = require('./handlers/main');
-var contest = require('./handlers/contest');
-var nursery = require('./handlers/nurseryRhyme');
-var newsletter = require('./handlers/newsletter');
-var processContact = require('./handlers/processContact');
-var vacation = require('./handlers/vacation');
+var main = require('./controllers/main');
+var contest = require('./controllers/contest');
+var nursery = require('./controllers/nurseryRhyme');
+var newsletter = require('./controllers/newsletter');
+var processContact = require('./controllers/processContact');
+var vacation = require('./controllers/vacation');
 
 module.exports = function(app){
     app.get('/', main.home);

@@ -1,8 +1,14 @@
 var mongoose = require('mongoose');
 
 // 定义模式
-var vacationSchema = mongoose.Schema({
+var vacationSchema = new mongoose.Schema({
     name: String,
+    // comments: [ { body:String, data:Date } ],
+    // date: { type:Date, default: Date.now },
+    // meta: {
+    //     votes: Number,
+    //     favs: Number
+    // }，
     slug: String,
     category: String,
     sku: String,         //  Stock Keeping Unit（库存量单位）
@@ -16,6 +22,9 @@ var vacationSchema = mongoose.Schema({
     notes: String,
     packagesSold: Number,
 });
+
+// 增加模式
+// Vacation.add({ name: 'string', color: 'string', price: 'number' });
 
 // 在创建模型之前必须先定义方法
 vacationSchema.methods.getDisplayPrice = function(){

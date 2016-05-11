@@ -59,8 +59,8 @@ var Vacation = require('./models/vacation.js');
 
 
 // 添加初始数据   第一次执行时 find 返回的是空列表
- Vacation.find(function(err,vacations){
-    if(vacations.length) return;    //   避免重复添加初始数据,如果数据库中已经有度假包了，那就是已经添加过了，我们就走开
+ Vacation.find( function(err,vacations) {
+    if(vacations.length) return;
     new Vacation({
         name: 'Hood River Day Trip',
         slug: 'hood-river-day-trip',
@@ -138,6 +138,7 @@ app.use('/upload', function(req, res, next){
 
 require('./routes.js')(app);
 
+
 //  ----------------- 添加错误处理程序 -----------------  //
 // 定制 404 页面
 app.use(function(err,req,res,next){
@@ -155,6 +156,6 @@ app.use(function(err,req,res,next){
 //  以便 Express 将他识别为一个错误处理程序 --  //
 
 
-app.listen(app.get('port'),function(){
-  console.log( 'Express started on http://localhost' + app.get('port') );
+app.listen( app.get('port'), function(){
+  console.log( 'Express started on http://localhost:' + app.get('port') );
 });
