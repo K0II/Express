@@ -9,7 +9,6 @@ var vacationSchema = new mongoose.Schema({
     //     votes: Number,
     //     favs: Number
     // }，
-    slug: String,
     category: String,
     sku: String,         //  Stock Keeping Unit（库存量单位）
     description: String,

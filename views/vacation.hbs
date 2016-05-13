@@ -1,5 +1,5 @@
-<h1>Vacation</h1>
-{{#each vacations}}
+
+<!-- {{#each vacations}}
     <div class="vacation">
         <h3>{{name}}</h3>
         <p>{{description}}</p>
@@ -11,4 +11,31 @@
             <a href="/notify-me-when-in-season?sku={{sku}}">notify me when in season.</a>
         {{/if}}
     </div>
-{{/each}}
+{{/each}} -->
+
+
+    <div class="vacation">
+
+        <h1>Available Books</h1>
+        <table class="table" style="width:90%;margin: 20px auto;">
+            <tr>
+                <th>name</th>
+                <th>author</th>
+                <th>Paperback Hardcover</th>
+                <th>stock</th>
+                <th>price</th>
+                <th></th>
+            </tr>
+            {{#each vacations}}
+                {{#if available}}
+                <tr>
+                    <td>{{name}}</td>
+                    <td>{{category}}</td>
+                    <td>{{priceInCents}}</td>
+                    <td>{{maximumGuests}}</td>
+                    <td>{{packagesSold}}</td>
+                    <td><a href="/cart/add?sku={{sku}}">Add to Cart</a></td>
+                </tr>
+                {{/if}}
+            {{/each}}
+        </table>

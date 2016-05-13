@@ -3,3 +3,25 @@
 <h1>Welcome to Meadowlark Travel</h1>
 {{> weather}}
 <!-- 在这引入了局部文件 weather.hbs -->
+<h1>注册</h1>
+<form id="signup" action="/" method="post">
+    <input type="text" name="name" value="" placeholder="your name">
+    <input type="password" name="password" value="" placeholder="your password">
+    <input type="submit" value="Submit">
+</form>
+
+{{#section 'jquery'}}
+    <script>
+        $('#signup').on('click', function(evt){
+            //evt.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url:'/',
+                data: $(this).serialize(),
+                success: function(res){
+                    console.log('注册成功');
+                }
+            });
+        })
+    </script>
+{{/section}}

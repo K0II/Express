@@ -2,16 +2,42 @@ var Vacation = require('../models/vacation.js');
 var VacationInSeasonListener = require('../models/vacationInSeasonListener.js');
 
 module.exports = {
+    // vacation: function(req,res){
+    //     Vacation.find( { available: true }, function(err,vacations){
+    //         var context = {
+    //             vacations: vacations.map(function(vacation){
+    //                 return {
+    //                     sku: vacation.sku,
+    //                     name: vacation.name,
+    //                     description: vacation.description,
+    //                     price: vacation.getDisplayPrice(),
+    //                     inSeason: vacation.inSeason,
+    //                 }
+    //             })
+    //         };
+    //         res.render('vacation',context);
+    //     });
+    // },
     vacation: function(req,res){
-        Vacation.find( { available: true }, function(err,vacations){
+    //  更改
+    //     Vacation.findOne({name:'Hood River Day Trip'},function(err,doc){
+    //         doc.set({tags:['day trip', 'hood river']});
+    //         doc.save();
+    //     });
+    //     res.render('vacation');
+    // },
+        Vacation.find( function(err,vacations){
             var context = {
                 vacations: vacations.map(function(vacation){
                     return {
-                        sku: vacation.sku,
                         name: vacation.name,
-                        description: vacation.description,
-                        price: vacation.getDisplayPrice(),
+                        category: vacation.category,
+                        sku: vacation.sku,
+                        priceInCents: vacation.priceInCents,
                         inSeason: vacation.inSeason,
+                        maximumGuests: vacation.maximumGuests,
+                        available: vacation.available,
+                        packagesSold: vacation.packagesSold,
                     }
                 })
             };

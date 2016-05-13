@@ -4,9 +4,11 @@ var nursery = require('./controllers/nurseryRhyme');
 var newsletter = require('./controllers/newsletter');
 var processContact = require('./controllers/processContact');
 var vacation = require('./controllers/vacation');
+var cart = require('./controllers/cart');
 
 module.exports = function(app){
     app.get('/', main.home);
+    app.post('/', main.homePost);
     app.get('/about', main.about);
     app.get('/headers', main.header);
     app.get('/error', main.error);
@@ -21,7 +23,7 @@ module.exports = function(app){
     app.get('/data/nursery-rhyme', nursery.nurseryRhymeAjax );
 
     app.get('/newsletter', newsletter.newsLetter);
-
+    app.post('/newsletter',newsletter.newsletterPost);
     app.get('/process-contact', processContact.processPage );
     app.post('/process-contact', processContact.processPost);
     app.post('/process', processContact.processAjax);
@@ -29,4 +31,6 @@ module.exports = function(app){
     app.get('/vacation', vacation.vacation);
     app.get('/notify-me-when-in-season', vacation.notifyMeWhenInSeason);
     app.post('/notify-me-when-in-season',vacation.notifyMeWhenInSeasonPost);
+
+    app.get('/cart/add', cart.add);
 }

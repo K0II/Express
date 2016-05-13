@@ -1,5 +1,5 @@
 <div class="formContainner">
-    <form  id="newsletterForm" action="/process?form=newsletter" method="post">
+    <form  id="newsletterForm" action="/newsletter?form=newsletter" method="post">
         <input type="hidden" name="_csrf" value="{{csrf}}">
         <input type="text" name="name" value="" placeholder="Name">
         <input type="email" required name="email" value="" placeholder="Email">
@@ -7,7 +7,7 @@
     </form>
 </div>
 
-{{#section 'jquery'}}
+<!--
 	<script>
         $(document).ready(function(){
             $('#newsletterForm').on('submit', function(evt){
@@ -32,4 +32,4 @@
             });
         });
     </script>
-{{/section}}
+ -->
